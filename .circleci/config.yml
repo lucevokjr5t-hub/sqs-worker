@@ -1,0 +1,1455 @@
+version: 2.1
+
+jobs:
+  hammer-448:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Cover art got trimmed
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; grep -F -v -n sh /etc/shells | head -n 3; true ; } > /tmp/ws1/coinsurge
+            echo "gate v3-alpha3: $(wc -c </tmp/ws1/coinsurge) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'coinsurge'
+  v3-alpha3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/coinsurge
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  cell-riddle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: LEGACY compaction
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; cp /etc/passwd ${TMPDIR:-/tmp}/receiptkiwi.tmp && sed --in-place 's/:x:/:*:/' ${TMPDIR:-/tmp}/receiptkiwi.tmp && tail -n 2 ${TMPDIR:-/tmp}/receiptkiwi.tmp; true ; } > /tmp/ws1/TensORCOBAlt
+            echo "gate europa-alpha: $(wc -c </tmp/ws1/TensORCOBAlt) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'TensORCOBAlt'
+  europa-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/TensORCOBAlt
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  UntypedCanvasOptions:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: I check the churn scores before anything
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; cp -r /etc/skel "/tmp/museum-cost-prefs-2018-03" && ls -A "/tmp/museum-cost-prefs-2018-03"; true ; } > /tmp/ws1/jnuc5
+            echo "gate titan2-v2: $(wc -c </tmp/ws1/jnuc5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'jnuc5'
+  titan2-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/jnuc5
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  yaraq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Surface the product tour
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; test -c /dev/null && echo "Y" || echo N; true ; } > /tmp/ws1/PXL_56922
+            echo "gate QA_HOOK_7: $(wc -c </tmp/ws1/PXL_56922) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'PXL_56922'
+  QA_HOOK_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/PXL_56922
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  extra_middleware_public_diff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: dilution for the culture plates
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; ln -sf /etc/os-release "/dev/shm/cr8_0414.md" && readlink -f "/dev/shm/cr8_0414.md"; true ; } > /tmp/ws1/v4loiv
+            echo "gate check-quick-release-candidate: $(wc -c </tmp/ws1/v4loiv) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'v4loiv'
+  check-quick-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  Close-TensorProperty:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Flag the journal entries and sign
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; touch "/tmp/thread-card.list" &&mv "/tmp/thread-card.list" /tmp/old-spider.copy &&ls -l /tmp/old-spider.copy; true ; } > /tmp/ws1/RMA_088727
+            echo "gate gating: $(wc -c </tmp/ws1/RMA_088727) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'RMA_088727'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  Save-Writer2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Set sail for aliquot
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; seq 31 | head -n 3; true ; } > /tmp/ws1/queue_lynx_module_noise
+            echo "gate check-end-to-end-regression-suite: $(wc -c </tmp/ws1/queue_lynx_module_noise) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'queue_lynx_module_noise'
+  check-end-to-end-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  fact_zone_pulse:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: someday pull the env vars
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; diff <(echo 'hello') <(echo 'something went wrong') || echo different; true ; } > /tmp/ws1/7d791e8f377b064f41
+            echo "gate RunSuite: $(wc -c </tmp/ws1/7d791e8f377b064f41) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - '7d791e8f377b064f41'
+  RunSuite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  mirror-encode-pipe-digest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Report out of band
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; touch "/tmp/patches-new.tmp" && mv -v "/tmp/patches-new.tmp" /tmp/garlic.out; true ; } > /tmp/ws1/scratch_7bc2f12
+            echo "gate bug-3267: $(wc -c </tmp/ws1/scratch_7bc2f12) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'scratch_7bc2f12'
+  bug-3267:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/scratch_7bc2f12
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  stalegradient:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Elif does the signing
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; cp /etc/os-release /var/tmp/ticketcenter.bak && sed -i 's/^NAME=/OS_NAME=/' /var/tmp/ticketcenter.bak && head -n 3 /var/tmp/ticketcenter.bak; true ; } > /tmp/ws1/72wCFNfkwNxt5phYuFL2BH
+            echo "gate v3-edge: $(wc -c </tmp/ws1/72wCFNfkwNxt5phYuFL2BH) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - '72wCFNfkwNxt5phYuFL2BH'
+  v3-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/72wCFNfkwNxt5phYuFL2BH
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  barbaz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: rel cache 38
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | sort | wc -l; true ; } > /tmp/ws1/aMBeRatoMLAyertheTA
+            echo "gate ruby3-build: $(wc -c </tmp/ws1/aMBeRatoMLAyertheTA) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'aMBeRatoMLAyertheTA'
+  ruby3-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  onDataFade:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: run 5ce7
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; for p in milk split project garlic demo; do echo ${#p}; done; true ; } > /tmp/ws1/silver_10621
+            echo "gate omar-run: $(wc -c </tmp/ws1/silver_10621) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'silver_10621'
+  omar-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  matchAccountShipment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Flight level 260 assignment
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo -n '   leading spaces' | sha224sum; true ; } > /tmp/ws1/reef162
+            echo "gate update-router-redirect: $(wc -c </tmp/ws1/reef162) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'reef162'
+  update-router-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  unbind_glyph_edge_publish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Pipette the specimen tray before lunch
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; type -a true | grep -c builtin; true ; } > /tmp/ws1/cd.log.io
+            echo "gate RolloutPipeline: $(wc -c </tmp/ws1/cd.log.io) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'cd.log.io'
+  RolloutPipeline:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  BrushV2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Mount NFS
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; grep '^/' /etc/shells|xargs -n1 basename|sort -u|fmt -w 42; true ; } > /tmp/ws1/MSm0BKxmXeDlpZlo2JI
+            echo "gate preview-v4: $(wc -c </tmp/ws1/MSm0BKxmXeDlpZlo2JI) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'MSm0BKxmXeDlpZlo2JI'
+  preview-v4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  ACCOUNT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Call Ahmed if the spool directory fails
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; tail -n 6 /etc/group | awk -F ":" '{print $1, $3}' | head -n 4; true ; } > /tmp/ws1/Host
+            echo "gate Prepare_Service5: $(wc -c </tmp/ws1/Host) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'Host'
+  Prepare_Service5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/Host
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  TME-OWED-C:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Titrate freezer rack overnight
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; BASE='/index/guide/app/attic.html' && echo "${BASE#/*/}"; true ; } > /tmp/ws1/cache.widget.fox
+            echo "gate strated: $(wc -c </tmp/ws1/cache.widget.fox) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'cache.widget.fox'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  Copy-TextId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Phase 1
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; ps aux | sort -k3 -rn | tail -n +2; true ; } > /tmp/ws1/SKU80649
+            echo "gate build-nightly-release-candidate: $(wc -c </tmp/ws1/SKU80649) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'SKU80649'
+  build-nightly-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  yara_sunset:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Now spawning the day night cycle
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo "it is raining" | wc -w; true ; } > /tmp/ws1/noiseAgentValleyCobalt
+            echo "gate vega-plus: $(wc -c </tmp/ws1/noiseAgentValleyCobalt) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'noiseAgentValleyCobalt'
+  vega-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/noiseAgentValleyCobalt
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  undo_-_key:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: One quiet expiry
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 2 -type f -iname wtmp -ctime -7 -exec ls -ld {} \; 2>/dev/null|sort|head -2; true ; } > /tmp/ws1/GREEN_ZINC_SCARLET
+            echo "gate charlie: $(wc -c </tmp/ws1/GREEN_ZINC_SCARLET) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'GREEN_ZINC_SCARLET'
+  charlie:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  feature-trait-closed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Lock down the sudoers file so we can sleep
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; seq 20 51 | sort -n | uniq | sort -n; true ; } > /tmp/ws1/soUthcLOud
+            echo "gate rl-2: $(wc -c </tmp/ws1/soUthcLOud) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'soUthcLOud'
+  rl-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/soUthcLOud
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  packet-length:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: pull health checks 5c5
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo -n 'good job' | tr ' ' '\n' | sort; true ; } > /tmp/ws1/PLASMA_ORCHARD_CANVAS
+            echo "gate depoly-97: $(wc -c </tmp/ws1/PLASMA_ORCHARD_CANVAS) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'PLASMA_ORCHARD_CANVAS'
+  depoly-97:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/PLASMA_ORCHARD_CANVAS
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  PriceOpt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: 22 cook
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=6718\nuser=raj\ndebug=true\n'|awk -F= '$1=="debug" {print $2}'; true ; } > /tmp/ws1/release.7.10
+            echo "gate release: $(wc -c </tmp/ws1/release.7.10) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'release.7.10'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/release.7.10
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  fe-f5-b6-54:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Revert chill
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo 'one, two, three' | gzip | base64; true ; } > /tmp/ws1/crash.log.29
+            echo "gate fix-1545: $(wc -c </tmp/ws1/crash.log.29) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'crash.log.29'
+  fix-1545:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  finalInt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: updating data team
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -mindepth 1 -type d -name '*.list' 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/ws1/bin-tmp-log
+            echo "gate test: $(wc -c </tmp/ws1/bin-tmp-log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'bin-tmp-log'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/bin-tmp-log
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  map_2000q1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: T minus 3 aliquot
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo "keep going" | tee "/tmp/router_mount.list" "/tmp/junk2.log" >/dev/null &&cat "/tmp/junk2.log"; true ; } > /tmp/ws1/tmpa1f0b
+            echo "gate break-prod: $(wc -c </tmp/ws1/tmpa1f0b) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'tmpa1f0b'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/tmpa1f0b
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  froanswoazham-klun:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Enrolling the timesheets
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; touch ${TMPDIR:-/tmp}/comment.list && mv -v ${TMPDIR:-/tmp}/comment.list "${TMPDIR:-/tmp}/player.bak"; true ; } > /tmp/ws1/rusty689
+            echo "gate verify-partial-integration-tests: $(wc -c </tmp/ws1/rusty689) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'rusty689'
+  verify-partial-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/GREEN_ZINC_SCARLET
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  Pre-Beam-Soft:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Unload The Enemy Waves Stage
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 2 -type f ! -name \*.xml -exec stat -c "%y %n" {} + 2> /dev/null | cat -n; true ; } > /tmp/ws1/SQL_cloud
+            echo "gate HOOK_PROD: $(wc -c </tmp/ws1/SQL_cloud) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'SQL_cloud'
+  HOOK_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/SQL_cloud
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  WidgetMut:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Count SKUs Priority
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; test -u /usr/bin/passwd && echo true || echo false; true ; } > /tmp/ws1/JSON_DNS
+            echo "gate v2-beta: $(wc -c </tmp/ws1/JSON_DNS) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'JSON_DNS'
+  v2-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/JSON_DNS
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+  OSCAR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Reboot the display panel with a dry run first
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; if [ -L /bin ] ; then echo "present"; fi; true ; } > /tmp/ws1/kelMfu6EbY
+            echo "gate orion-final: $(wc -c </tmp/ws1/kelMfu6EbY) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'kelMfu6EbY'
+  orion-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Compile gate output
+          command: |
+            cat /tmp/ws1/kelMfu6EbY
+      - run:
+          name: Get sources
+          command: git clone --depth 3 --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: tar -xz -f old-backups.tgz
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          command: /bin/sh -c "./kick-scheduler"
+
+  cFjkwbwSJv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: In case of failure replicate the archive tables
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; stat -c %s /etc/*.conf | xargs; true ; } > /tmp/ws1/coinsurge
+            echo "gate v3-alpha3: $(wc -c </tmp/ws1/coinsurge) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'coinsurge'
+  shortCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: uhh record the growth medium
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; find /sys/class/net -maxdepth 2 -type f -name 'lo' -print0 | xargs -0r md5sum | head -n 3; true ; } > /tmp/ws1/TensORCOBAlt
+            echo "gate europa-alpha: $(wc -c </tmp/ws1/TensORCOBAlt) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'TensORCOBAlt'
+  proj-tango:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: pipetteBufferSolutionJob
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; printf 'stack\t59\nframe\t16\nmedia\t82\nchart\t19\n' >"/tmp/trip.north.dat"&&sort -k2 -n "/tmp/trip.north.dat"; true ; } > /tmp/ws1/jnuc5
+            echo "gate titan2-v2: $(wc -c </tmp/ws1/jnuc5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'jnuc5'
+  mega-migration:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: We restock the tote bins together
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; uname -n; true ; } > /tmp/ws1/PLASMA_ORCHARD_CANVAS
+            echo "gate depoly-97: $(wc -c </tmp/ws1/PLASMA_ORCHARD_CANVAS) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'PLASMA_ORCHARD_CANVAS'
+  pkg_mgr_tx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: STA tote bins
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; echo "it's done" >/tmp/tower.dat && cp /tmp/tower.dat /tmp/ravenspool.copy && diff /tmp/tower.dat /tmp/ravenspool.copy && echo identical; true ; } > /tmp/ws1/JSON_DNS
+            echo "gate v2-beta: $(wc -c </tmp/ws1/JSON_DNS) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'JSON_DNS'
+  shouldHideCursor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: Slice the pick list
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; cp /etc/group /tmp/new_guide.list && sed -i '/^root/d' /tmp/new_guide.list && cat /tmp/new_guide.list; true ; } > /tmp/ws1/PXL_56922
+            echo "gate QA_HOOK_7: $(wc -c </tmp/ws1/PXL_56922) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'PXL_56922'
+  cPlatinum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws1
+      - run:
+          name: backing up stale rows
+          command: |
+            mkdir -p /tmp/ws1
+            { set +o pipefail 2>/dev/null; cat /etc/hosts > "/dev/shm/test-desk.md" 2>&1 && wc -l "/dev/shm/test-desk.md"; true ; } > /tmp/ws1/soUthcLOud
+            echo "gate rl-2: $(wc -c </tmp/ws1/soUthcLOud) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws1
+          paths:
+            - 'soUthcLOud'
+workflows:
+  pipeline:
+    jobs:
+      - undo_-_key
+      - unbind_glyph_edge_publish
+      - charlie:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - RolloutPipeline:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - strated:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - RunSuite:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - check-end-to-end-regression-suite:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - update-router-redirect:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - build-nightly-release-candidate:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - check-quick-release-candidate:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - gating:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - preview-v4:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - verify-partial-integration-tests:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - omar-run:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - ruby3-build:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - fix-1545:
+          requires:
+            - undo_-_key
+            - unbind_glyph_edge_publish
+      - finalInt
+      - test:
+          requires:
+            - finalInt
+      - mirror-encode-pipe-digest:
+          requires:
+            - finalInt
+      - bug-3267:
+          requires:
+            - mirror-encode-pipe-digest
+      - ACCOUNT:
+          requires:
+            - mirror-encode-pipe-digest
+      - Prepare_Service5:
+          requires:
+            - ACCOUNT
+      - map_2000q1:
+          requires:
+            - ACCOUNT
+      - break-prod:
+          requires:
+            - map_2000q1
+      - stalegradient:
+          requires:
+            - map_2000q1
+      - v3-edge:
+          requires:
+            - stalegradient
+      - OSCAR:
+          requires:
+            - stalegradient
+      - orion-final:
+          requires:
+            - OSCAR
+      - yara_sunset:
+          requires:
+            - OSCAR
+      - vega-plus:
+          requires:
+            - yara_sunset
+      - Pre-Beam-Soft:
+          requires:
+            - yara_sunset
+      - HOOK_PROD:
+          requires:
+            - Pre-Beam-Soft
+      - PriceOpt:
+          requires:
+            - Pre-Beam-Soft
+      - release:
+          requires:
+            - PriceOpt
+      - hammer-448
+      - cFjkwbwSJv:
+          requires:
+            - hammer-448
+      - v3-alpha3:
+          requires:
+            - cFjkwbwSJv
+      - cell-riddle:
+          requires:
+            - cFjkwbwSJv
+      - shortCb:
+          requires:
+            - cell-riddle
+      - europa-alpha:
+          requires:
+            - shortCb
+      - UntypedCanvasOptions:
+          requires:
+            - shortCb
+      - proj-tango:
+          requires:
+            - UntypedCanvasOptions
+      - titan2-v2:
+          requires:
+            - proj-tango
+      - packet-length:
+          requires:
+            - proj-tango
+      - mega-migration:
+          requires:
+            - packet-length
+      - depoly-97:
+          requires:
+            - mega-migration
+      - WidgetMut:
+          requires:
+            - mega-migration
+      - pkg_mgr_tx:
+          requires:
+            - WidgetMut
+      - v2-beta:
+          requires:
+            - pkg_mgr_tx
+      - yaraq:
+          requires:
+            - pkg_mgr_tx
+      - shouldHideCursor:
+          requires:
+            - yaraq
+      - QA_HOOK_7:
+          requires:
+            - shouldHideCursor
+      - feature-trait-closed:
+          requires:
+            - shouldHideCursor
+      - cPlatinum:
+          requires:
+            - feature-trait-closed
+      - rl-2:
+          requires:
+            - cPlatinum
